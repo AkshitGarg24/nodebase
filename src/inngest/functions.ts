@@ -11,7 +11,12 @@ export const execute = inngest.createFunction(
     const { text } = await step.ai.wrap("generate-text", generateText, {
       model: google("gemini-2.5-flash"),
       system: "You are a helpful assistant.",
-      prompt: "Which is the highest mountain in the whole world?"
+      prompt: "Which is the highest mountain in the whole world?",
+      experimental_telemetry: {
+        isEnabled: true,
+        recordInputs: true,
+        recordOutputs: true,
+      },
     })
     return text;
   },

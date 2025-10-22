@@ -20,7 +20,7 @@ const Page = () => {
 
   return <div className="flex flex-col justify-center items-center gap-10">
     <div>Protected Server Component</div>
-    <div>{JSON.stringify(receipe.data)}</div>
+    <div>{JSON.stringify(workflows)}</div>
     <Button onClick={() => create.mutate()} disabled={create.isPending}>Create Workflow</Button>
     <Button onClick={() => receipe.mutate()} disabled={receipe.isPending}>Generate Receipe</Button>
     <Logout />
