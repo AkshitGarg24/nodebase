@@ -7,7 +7,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
 import { authClient } from "@/lib/auth-client";
 import { useHasActiveSubscription } from "@/features/subscriptions/hooks/use-Subscription";
-import { QueryClient } from "@tanstack/react-query";
+import { getQueryClient } from "@/trpc/client";
 
 const menuItems = [
     {
@@ -36,7 +36,7 @@ export const AppSidebar = () => {
     const router = useRouter();
     const pathname = usePathname();
     const { hasActiveSubscription, isLoading } = useHasActiveSubscription()
-    const queryClient = new QueryClient()
+    const queryClient = getQueryClient();
 
     return <Sidebar collapsible="icon">
         <SidebarHeader>
