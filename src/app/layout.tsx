@@ -3,6 +3,7 @@ import { Outfit } from "next/font/google";
 import { TRPCReactProvider } from "@/trpc/client";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import { NuqsAdapter } from 'nuqs/adapters/next/app'
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -25,8 +26,10 @@ export default function RootLayout({
         className={`${outfit.variable} antialiased`}
       >
         <TRPCReactProvider>
-          {children}
-          <Toaster />
+          <NuqsAdapter>
+            {children}
+            <Toaster />
+          </NuqsAdapter> 
         </TRPCReactProvider>
       </body>
     </html>
