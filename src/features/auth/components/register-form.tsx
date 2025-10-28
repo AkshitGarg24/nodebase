@@ -59,7 +59,6 @@ export function RegisterForm() {
     };
 
     const isPending = form.formState.isSubmitting;
-    console.log(form)
 
     return (
         <div className="flex flex-col gap-6 w-2/5 min-w-80">
