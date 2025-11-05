@@ -4,6 +4,7 @@ import { TRPCReactProvider } from "@/trpc/client";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { NuqsAdapter } from 'nuqs/adapters/next/app'
+import { Provider } from "jotai";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -27,9 +28,11 @@ export default function RootLayout({
       >
         <TRPCReactProvider>
           <NuqsAdapter>
-            {children}
+            <Provider>
+              {children}
+            </Provider>
             <Toaster />
-          </NuqsAdapter> 
+          </NuqsAdapter>
         </TRPCReactProvider>
       </body>
     </html>

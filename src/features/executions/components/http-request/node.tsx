@@ -1,12 +1,13 @@
 "use client";
 
-import type { Node, NodeProps } from "@xyflow/react";
+import { useReactFlow, type Node, type NodeProps } from "@xyflow/react";
 import { GlobeIcon } from "lucide-react";
-import { memo } from "react";
+import { memo, useState } from "react";
 import { BaseExecutionNode } from "../base-execution-nodes";
+import { HttpDialogFormType, HttpRequestDialog } from "./dialog";
 
 type HttpRequestData = {
-    endpoint?: string;
+    endpoint: string;
     method?: "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
     body?: string;
     [key: string]: unknown;
@@ -15,19 +16,49 @@ type HttpRequestData = {
 type HttpsRequestNodeType = Node<HttpRequestData>;
 
 export const HttpRequestNode = memo((props: NodeProps<HttpsRequestNodeType>) => {
-    const nodeData = props.data as HttpRequestData;
+    const [dialogOpen, setDialogOpen] = useState(false);
+    const nodeData = props.data;
     const description = nodeData?.endpoint ? `${nodeData.method || "GET"} : ${nodeData.endpoint}` : "Not Configured"
+    const nodeStatus = "initial"
+    const { setNodes } = useReactFlow();
+
+    const handleOpenSettings = () => setDialogOpen(true);
+    const handleSubmit = (values: HttpDialogFormType) => {
+        setNodes((nodes) => nodes.map((node) => {
+            if (node.id === props.id) {
+                return {
+                    ...node,
+                    data: {
+                        ...node.data,
+                        endpoint: values.endpoint,
+                        method: values.method,
+                        body: values.body,
+                    }
+                }
+            }
+            return node;
+        }))
+    }
 
     return (
         <>
-            <BaseExecutionNode 
+            <HttpRequestDialog
+                open={dialogOpen}
+                onOpenChange={setDialogOpen}
+                onSubmit={handleSubmit}
+                defaultBody={nodeData.body}
+                defaultEndpoint={nodeData.endpoint}
+                defaultMethod={nodeData.method}
+            />
+            <BaseExecutionNode
                 {...props}
                 id={props.id}
                 icon={GlobeIcon}
                 name="HTTP Request"
                 description={description}
-                onSettings={() => {}}
-                onDoubleClick={() => {}}
+                onSettings={handleOpenSettings}
+                onDoubleClick={handleOpenSettings}
+                status={nodeStatus}
             />
         </>
     )

@@ -6,10 +6,14 @@ import { useState, useCallback } from 'react';
 import { ReactFlow, applyNodeChanges, applyEdgeChanges, addEdge, type Node, type Edge, type NodeChange, type EdgeChange, type Connection, Background, Controls, MiniMap, Panel } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import { nodeComponents } from "@/config/node-components";
-import { AddNodeButton } from "@/components/add-node-button";
+import { AddNodeButton } from "@/features/editor/components/add-node-button";
+import { useSetAtom } from "jotai";
+import { editorAtom } from "../store/atoms";
 
 export const Editor = ({ workflowId }: { workflowId: string }) => {
     const { data: workflow } = useSuspenseSingleWorkflow(workflowId);
+
+    const setEditor = useSetAtom(editorAtom);
 
     const [nodes, setNodes] = useState<Node[]>(workflow.nodes);
     const [edges, setEdges] = useState<Edge[]>(workflow.edges);
@@ -37,6 +41,7 @@ export const Editor = ({ workflowId }: { workflowId: string }) => {
                 onConnect={onConnect}
                 nodeTypes={nodeComponents}
                 fitView
+                onInit={setEditor}
             >
                 <Background />
                 <Controls />
