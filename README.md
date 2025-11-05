@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Nodebase
 
-## Getting Started
+Nodebase is a workflow automation platform inspired by n8n and Zapier, designed to help users connect APIs, automate tasks, and build integrations visually — without writing code.
 
-First, run the development server:
+# Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Visual Workflow Builder: Drag and drop nodes to create and automate workflows easily.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Type-safe API Layer: Built with tRPC for end-to-end type safety.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Background Jobs: Powered by Inngest for handling async and scheduled tasks.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Authentication: Secure user sessions and auth flows using Better Auth.
 
-## Learn More
+- Modern UI: Built with ShadCN, Tailwind CSS, and TanStack Query for smooth UX and responsive design.
 
-To learn more about Next.js, take a look at the following resources:
+- PostgreSQL Database: Reliable relational storage with Prisma integration.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Tech Stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Frontend: Next.js, TypeScript, ShadCN, Tailwind CSS
 
-## Deploy on Vercel
+- Backend: tRPC, Inngest, Better Auth
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Database: PostgreSQL
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- State Management & Data Fetching: TanStack Query
+
+**NOTE:** Currently this an ongoing project and gets updated with time and estimated to be completed by December 2025.
